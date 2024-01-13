@@ -25,8 +25,7 @@ exports.getShopDetails = (req, res, next)=>{
     Shop.fetchDetails(id)
         .then(data => {
                 res.render('./shop/details', {shopdata:data})
-            }
-        )
+        })
         .catch(err=>console.log(err));
     ;
 }

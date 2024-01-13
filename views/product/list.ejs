@@ -1,0 +1,20 @@
+<div style="margin: auto; padding: 10px; height: 100%; background-color:#a6dbeb;">
+    <div style="margin: auto; padding: 10px; width: 80%; height: 100%; background-color:#a6dbeb;">
+        <h3>-: Product listing using mongoose:-</h3>
+
+        <div style="float: left; width: 20%; margin: 5px; padding: 15px; border: 1px solid #000; background-color: rgb(180, 226, 226);">
+            <form action="/product/add" method="post" >
+            <input type="text" name="productName" placeholder="Product Name" style="margin:0 0 10px 0px;;" />
+            <input type="text" name="productPrice" placeholder="Product Price" /> &nbsp; 
+            <input type="submit" value="Save" />
+            </form>
+        </div>
+        <% for (let product of productlist) { %>
+            <div style="float: left; width: 20%; margin: 5px; padding: 15px; border: 1px solid #000; background-color: #b4e2e2;">
+                <%= product.name %><br />
+                Price : <%= product.price %><br /><br />
+                <a href="/product/details/<%=product._id%>" style="color: #111; ">View More</a>
+            </div>
+        <% } %>
+    </div>
+</div>
