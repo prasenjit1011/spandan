@@ -1,10 +1,9 @@
 const getDb = require('../util/database').getDb;
 
 class Shop {
-  /*constructor(title, price, description, imageUrl) {
-    this.title = title;
-    this.price = price;
-    this.description = description;
+  constructor(name, address, imageUrl) {
+    this.name = name;
+    this.address = address;
     this.imageUrl = imageUrl;
   }
 
@@ -19,7 +18,7 @@ class Shop {
       .catch(err => {
         console.log(err);
       });
-  }*/
+  }
 
   static fetchAll() {
     const db = getDb();
@@ -28,7 +27,7 @@ class Shop {
       .find()
       .toArray()
       .then(products => {
-        console.log(products);
+        //console.log(products);
         return products;
       })
       .catch(err => {
@@ -42,7 +41,7 @@ class Shop {
       .collection('customers')
       .findOne()
       .then(products => {
-        console.log(products);
+        //console.log(products);
         return products;
       })
       .catch(err => {
