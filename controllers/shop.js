@@ -17,8 +17,12 @@ exports.getShopList = (req, res, next)=>{
 }
 
 exports.getShopDetails = (req, res, next)=>{
-    console.log('-: Welcome to shop listing page :-');
-    Shop.fetchDetails()
+    
+    id = req.params.id;
+    console.log('-: Welcome to shop details page :-');
+    console.log('-: Shop Id : '+id+' :-');
+
+    Shop.fetchDetails(id)
         .then(data => {
                 res.render('./shop/details', {shopdata:data})
             }

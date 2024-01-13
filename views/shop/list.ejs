@@ -3,7 +3,10 @@
     
     <div style="margin: auto; padding: 10px; width: 80%; height: 100%; background-color:blueviolet;">
         <h3>
-            -: Shop Listing Page :-
+            -: Shop Listing Page :- &nbsp; &nbsp; 
+            <a style="color: #FFF;" href="https://cloud.mongodb.com/v2/65a000d7e3a5563410a0f43b#/metrics/replicaSet/65a0010b250b252ebbbd1382/explorer/Mydb/customers/find" target="_blank">
+                MongoDB
+            </a> &nbsp; &nbsp; 
             <a href="/" style="color: #FFF;">Go to home page</a>
         </h3>
         <div style="float: left; width: 20%; margin: 5px; padding: 15px; border: 1px solid #000; background-color: rgb(180, 226, 226);">
@@ -15,10 +18,10 @@
         </div>
 
         <% for (let shop of shoplist) { %>
-            <div style="float: left; width: 20%; margin: 5px; padding: 15px; border: 1px solid #000; background-color: rgb(180, 226, 226);">
+            <div style="float: left; width: 20%; margin: 5px; padding: 15px; border: 1px solid #000; background-color: #b4e2e2;">
                 <%= shop.name %><br />
                 <%= shop.address %><br /><br />
-                <a href="/shop/details" style="color: #111; ">View More</a>
+                <a href="/shop/details/<%=shop._id%>" style="color: #111; ">View More</a>
             </div>
         <% } %>
     </div>
