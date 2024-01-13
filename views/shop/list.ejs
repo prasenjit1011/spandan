@@ -1,1 +1,18 @@
-<h3>-: Shop List :-</h3>
+
+<div style="margin: auto; padding: 10px; height: 100%; background-color:blueviolet;">
+    
+    <div style="margin: auto; padding: 10px; width: 80%; height: 100%; background-color:blueviolet;">
+        <h3>
+            -: Shop Listing Page :-
+            <a href="/" style="color: #FFF;">Go to home page</a>
+        </h3>
+
+        <% for (let shop of shoplist) { %>
+            <div style="float: left; width: 20%; margin: 5px; padding: 15px; border: 1px solid #000;">
+                <%= shop.name %><br />
+                <%= shop.address %><br /><br />
+                <a href="/shop/details" style="color: #FFF; ">View More</a>
+            </div>
+        <% } %>
+    </div>
+</div>
