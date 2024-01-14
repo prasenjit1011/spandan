@@ -1,5 +1,20 @@
-<h1>
-    Home page with MVC : 
-    <a href="/shop" style="color: #000;">Shop list using mongoDB </a> &nbsp; &nbsp; 
-    <a href="/product/list" style="color: #000;">Product list using mongoose</a>
-</h1>
+<div style="width: 100%; height: 100%; background-color: turquoise; padding: 15%;">
+    <h3>
+        Home page with MVC : 
+        <a href="/shop" style="color: #000;">Shop list using mongoDB </a> &nbsp; &nbsp; 
+        <a href="/product/list" style="color: #000;">Product list using mongoose</a> &nbsp; &nbsp; 
+
+        <% if(!sessionData.isLoggedIn){ %>
+            <a href="/login" style="color: #000;">Logged In </a> &nbsp; &nbsp; 
+        <% }else{ %>
+            <a href="/logout" style="color: #000;">Logged Out </a> &nbsp; &nbsp; 
+        <% } %>
+    </h3>
+    
+    <hr />
+    <% if(sessionData.isLoggedIn){  %>
+        <h2>Welcome <%= sessionData.user.fullname %></h2>
+    <% }else{ %>
+        <h2>Welcome</h2>
+    <% } %>
+</div>
