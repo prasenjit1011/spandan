@@ -4,7 +4,7 @@ const User      = require('../models/authuser');
 
 exports.getLogin = (req, res, next) => {
     console.log('-: isLoggedIn Form :-');
-    res.render('./auth/loginfrm');
+    res.render('./auth/loginfrm', {csrfToken:req.csrfToken()});
     //res.redirect('/loginsbmt');
 }
 
@@ -16,7 +16,7 @@ exports.getLogout = (req, res, next) => {
 }
 
 exports.getSignup = (req, res, next) => {
-    res.render('./auth/signupfrm');
+    res.render('./auth/signupfrm', {csrfToken:req.csrfToken()});
 }
 
 exports.postLogin = (req, res, next) => {

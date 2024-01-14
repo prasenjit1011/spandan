@@ -11,6 +11,7 @@
         </h3>
         <div style="float: left; width: 20%; margin: 5px; padding: 15px; border: 1px solid #000; background-color: rgb(180, 226, 226);">
             <form action="/shop/add" method="post" >
+                <input type="hidden" name="_csrf" value="<%= csrfToken %>">
             <input type="text" name="shopName" placeholder="Shop Name" style="margin:0 0 10px 0px;;" />
             <input type="text" name="shopAddress" placeholder="Shop Address" /> &nbsp; 
             <input type="submit" value="Save" />

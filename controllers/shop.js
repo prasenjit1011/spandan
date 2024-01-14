@@ -9,7 +9,7 @@ exports.getShopList = (req, res, next)=>{
     console.log('-: Welcome to shop listing page :-');
     Shop.fetchAll()
         .then(data => {
-                res.render('./shop/list', {shoplist:data})
+                res.render('./shop/list', {csrfToken:req.csrfToken(), shoplist:data})
             }
         )
         .catch(err=>console.log(err));
