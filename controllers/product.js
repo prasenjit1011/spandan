@@ -28,6 +28,10 @@ exports.addProduct = (req, res, next)=>{
     console.log('-: Product added successfully! :-');
     console.log(req.body.productName, req.body.productPrice);
 
+    //const ProductImage = req.file;
+    //console.log(ProductImage);
+
+
     const product = new Product({name:req.body.productName, price:req.body.productPrice});
     product.save()
             .then(result=>console.log(result))
