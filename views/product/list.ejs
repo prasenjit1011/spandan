@@ -11,15 +11,18 @@
             </form>
         </div>
         <% for (let product of productlist) { %>
-            <div style="float: left; width: 20%; height: 50px; margin: 5px; padding: 5px; border: 1px solid #000; background-color: #b4e2e2;">
+            <div style="float: left; width: 20%; height: 150px; margin: 5px; padding: 5px; border: 1px solid #000; background-color: #b4e2e2;">
                 <div style="width: 50%; float: left;">
                     <%= product.name %>
-                    <br />
-                    Price : <%= product.price %> &nbsp; 
-                    <a href="/product/details/<%=product._id%>" style="color: #111; cursor: pointer; ">View More</a>
+                    <br /> <br />
+                    Price : <%= product.price %> &nbsp; <br /><br />
                 </div>
                 <div style="width: 50%; float: left;">
                     <img src="/<%=product.imageUrl%>" width="100px" />
+                </div>
+                <div style="width: 100%; float: left;">
+                    <a href="/product/details/<%=product._id%>" style="color: #111; cursor: pointer; ">View More</a> &nbsp; &nbsp; 
+                    <a href="/product/delete/<%=product._id%>" style="color: #111; cursor: pointer; ">Delete</a>  
                 </div>
             </div>
         <% } %>

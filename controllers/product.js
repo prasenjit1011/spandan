@@ -42,3 +42,14 @@ exports.addProduct = (req, res, next)=>{
 
 }
 
+
+exports.deleteProduct = (req, res, next) => {
+    console.log('-: Product Deleted :-');
+
+    id = req.params.id;
+    Product.findOneAndDelete(id)
+            .then(result=>{
+                res.redirect('/product/list');
+            })
+            .catch();
+}
