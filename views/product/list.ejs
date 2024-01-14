@@ -3,19 +3,24 @@
         <h3>-: Product listing using mongoose:-</h3>
 
         <div style="float: left; width: 20%; margin: 5px; padding: 15px; border: 1px solid #000; background-color: rgb(180, 226, 226);">
-            <form action="/product/add" method="post"  >
-            <input type="hidden" name="_csrf" value="<%= csrfToken %>">
-            <input type="text" name="productName" placeholder="Product Name" style="margin:0 0 10px 0px;;" />
-            <input type="text" name="productPrice" placeholder="Product Price" /> &nbsp; 
-            <input type="file" name="ProductImage"  style="margin:10px 0 10px 0px;;" />
-            <input type="submit" value="Save" style="cursor: pointer;" />
+            <form action="/product/add/?_csrf=<%=csrfToken%>" method="post" enctype="multipart/form-data" >
+                <input type="text" name="productName" placeholder="Product Name" style="margin:0 0 10px 0px;;" />
+                <input type="text" name="productPrice" placeholder="Product Price" /> &nbsp; 
+                <input type="file" name="ProductImage"  style="margin:10px 0 10px 0px;;" />
+                <input type="submit" value="Save" style="cursor: pointer;" />
             </form>
         </div>
         <% for (let product of productlist) { %>
-            <div style="float: left; width: 20%; height: 135px; margin: 5px; padding: 15px; border: 1px solid #000; background-color: #b4e2e2;">
-                <%= product.name %><br />
-                Price : <%= product.price %><br /><br />
-                <a href="/product/details/<%=product._id%>" style="color: #111; cursor: pointer; ">View More</a>
+            <div style="float: left; width: 20%; height: 50px; margin: 5px; padding: 5px; border: 1px solid #000; background-color: #b4e2e2;">
+                <div style="width: 50%; float: left;">
+                    <%= product.name %>
+                    <br />
+                    Price : <%= product.price %> &nbsp; 
+                    <a href="/product/details/<%=product._id%>" style="color: #111; cursor: pointer; ">View More</a>
+                </div>
+                <div style="width: 50%; float: left;">
+                    <img src="/<%=product.imageUrl%>" width="100px" />
+                </div>
             </div>
         <% } %>
     </div>

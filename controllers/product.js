@@ -26,17 +26,19 @@ exports.getProductDetails = (req, res, next) => {
 
 exports.addProduct = (req, res, next)=>{
     console.log('-: Product added successfully! :-');
-    console.log(req.body.productName, req.body.productPrice);
 
-    //const ProductImage = req.file;
-    //console.log(ProductImage);
-
-
-    const product = new Product({name:req.body.productName, price:req.body.productPrice});
-    product.save()
-            .then(result=>console.log(result))
+    const productName   = req.body.productName;
+    const productPrice  = req.body.productPrice;
+    const ProductData   = req.file;
+    const productImage  = ProductData.filename;//ProductData.destination+'/'+
+    
+    const product = new Product({name: productName, price: productPrice, imageUrl: productImage });
+    return product.save()
+            .then(result=>{
+                console.log(result);
+                res.redirect('/product/list');
+            })
             .catch(err=>console.log(err));
 
-    res.redirect('/product/list');
 }
 
