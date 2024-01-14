@@ -6,6 +6,10 @@ const mongoose      = require('mongoose');
 const session       = require('express-session');
 const mongodbStore  = require('connect-mongodb-session')(session);
 
+//const cookieParser  = require('cookie-parser');
+const csrf          = require('csurf')
+const csrfProtect   = csrf();//{ cookie: true }
+
 
 const mongoConnect  = require('./util/database').mongoConnect;
 const MONGODB_URI   = "mongodb+srv://tester:tester1234@cluster0.hlicuim.mongodb.net/Mydb?retryWrites=true&w=majority";
@@ -19,7 +23,7 @@ app.set('views', 'views');
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 app.use(session(params));
-
+app.use(csrfProtect);
 
 const shop = require('./routes/shop');
 app.use(shop);

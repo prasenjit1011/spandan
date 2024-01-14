@@ -2,10 +2,11 @@ const Product = require('../models/product');
 
 exports.getProductList = (req, res, next)=>{
     console.log('-: Welcome to product listing page :-');
+    console.log('Token', req.csrfToken());
 
     Product.find()
             .then(data=>{
-                res.render('./product/list', {productlist:data});
+                res.render('./product/list', {csrfToken:req.csrfToken(), productlist:data});
             })
             .catch(err=>console.log(err));
 }
