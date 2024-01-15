@@ -1,0 +1,25 @@
+
+<div style="margin: auto; padding: 10px; height: 100%; background-color: turquoise;">
+    <div style="margin: auto; padding: 10px; width: 80%; height: 100%; background-color: turquoise;">
+        <div style="width: 100%; margin: 20px; ">
+            <div style="float: left; padding: 10px;">
+                <b>Home page with MVC</b>
+            </div>
+            <div style="float: left; padding: 10px;;">
+                <a href="/shop" style="color: #000;">Shop list using mongoDB </a> &nbsp; &nbsp; 
+                <a href="/product/list" style="color: #000;">Product list using mongoose</a> &nbsp; &nbsp; 
+            </div>
+            <div style="float: left; padding: 10px;">
+                <a href="/article/list" style="color: #000" >Article using Mysql and Async</a> &nbsp; &nbsp;
+                <a href="/article/listing" style="color: #000;" >Article using Mysql</a>            
+            </div>
+            <div style="float: left; padding: 10px;">
+                <% if(!sessionData.isLoggedIn){ %>
+                    <a href="/login" style="color: #000;">Logged In </a> &nbsp; &nbsp; 
+                <% }else{ %>
+                    <a href="/logout" style="color: #000;">Logged Out </a> &nbsp; &nbsp; 
+                <% } %>
+            </div>
+        </div>
+        <br />
+        <div style="width: 100%; margin: 20px;;">

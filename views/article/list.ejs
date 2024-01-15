@@ -1,0 +1,10 @@
+<div style="margin: auto; padding: 10px; height: 100%; background-color:#a6dbeb;">
+    <div style="margin: auto; padding: 10px; width: 80%; height: 100%; background-color:#a6dbeb;">
+        <h3>Article List</h3>
+        <% for(let article of data){ %>
+            <div style="float: left; width: 20%; height: 150px; margin: 5px; padding: 5px; border: 1px solid #000; background-color: #b4e2e2;">
+                <p><%= article.title %></p>
+            </div>
+        <%  }   %>
+    </div>
+</div>

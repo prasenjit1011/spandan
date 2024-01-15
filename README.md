@@ -1,9 +1,7 @@
 # NodeJS master project with ExpressJS.
 
 Using MongoDB with mongoose  <br />
-Using SQL with Sequelize
-
-
+Using SQL with Sequelize  <br />
 
 ## Important command list
 
@@ -32,10 +30,28 @@ https://cloud.mongodb.com/v2/65a000d7e3a5563410a0f43b#/metrics/replicaSet/65a001
 
 # Middleware and CSRF
 
-const bodyParser    = require('body-parser') <br />
-const cookieParser  = require('cookie-parser'); <br />
-const csrf          = require('csurf') <br />
-const csrfProtect   = csrf();//{ cookie: true } <br />
+bodyParser    = require('body-parser') <br />
+cookieParser  = require('cookie-parser'); <br />
+csrf          = require('csurf') <br />
+csrfProtect   = csrf();//{ cookie: true } <br />
 app.use(csrfProtect); <br />
 
 
+# Header setup for Cross server 
+
+app.use((req, res, next) => { <br />
+    res.setHeader('Access-Control-Allow-Origin', '*'); <br />
+    res.setHeader('Access-Control-Allow-Methods', 'OPTIONS, GET, POST, PUT, PATCH, DELETE'); <br />
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization'); <br />
+    next(); <br />
+});<br />
+
+
+## JWT setup : jsonwebtoken
+
+jwt				= require('jsonwebtoken'); <br />
+token     		= jwt.sign(userdata, 'mysecret', { expiresIn: '1h' }); <br /><br />
+
+authorization	= req.get('Authorization'); <br />
+token			= authorization.split(' ')[1]; <br />
+data 			= jwt.verify(token, 'mysecret'); <br />
