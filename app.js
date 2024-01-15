@@ -10,7 +10,6 @@ const mongodbStore  = require('connect-mongodb-session')(session);
 const csrf          = require('csurf')
 const csrfProtect   = csrf();//{ cookie: true }
 
-const mysqlConnect  = require('./util/mysql_database');
 const mongoConnect  = require('./util/database').mongoConnect;
 const MONGODB_URI   = "mongodb+srv://tester:tester1234@cluster0.hlicuim.mongodb.net/Mydb?retryWrites=true&w=majority";
 const store         = new mongodbStore({ uri: MONGODB_URI, collection: 'sessions' });
@@ -52,6 +51,9 @@ app.use(auth);
 
 const article = require('./routes/article');
 app.use(article);
+
+const item = require('./routes/item');
+app.use(item);
 
 app.use('/', (req, res, next)=>{
     console.log('-: Welcome :-');
