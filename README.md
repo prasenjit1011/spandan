@@ -6,7 +6,9 @@ Using SQL with Sequelize  <br />
 ## Important command list
 
 npm init <br />
-npm i --save express express-session body-parser ejs mongodb mongoose connect-mongodb-session bcryptjs cookie-parser csurf csrf <br />
+npm i --save express express-session body-parser ejs jsonwebtoken bcryptjs cookie-parser csurf csrf <br />
+npm i --save mongodb mongoose connect-mongodb-session mysql2 sequelize <br />
+
 npm i --save-dev nodemon <br />
 nodemon app.js <br />
 
