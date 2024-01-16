@@ -5,7 +5,9 @@ exports.getArticleList = async (req, res, next) => {
 
     let fetchResult  = await article.fetchAll();
     let fetchData    = await fetchResult[0];
-    return res.render('./article/list', {pageTitle:'Article list using Asyn method with Mysql', data:fetchData});
+    const pageNo     = req.query.page ?? 0;
+
+    return res.render('./article/list', {pageNo : pageNo, data:fetchData, pageTitle:'Article list using Asyn method with Mysql'});
 }
 
 
@@ -14,7 +16,7 @@ exports.getArticleListing = (req, res, next) => {
 
     return article.fetchAll()
                     .then(([rows, fieldData])=>{
-                        res.render('./article/list', {pageTitle:'Article list using Asyn with then, catch with Mysql',data:rows});
+                        res.render('./article/list', {pageNo : pageNo, data:rows, pageTitle:'Article list using Asyn with then, catch with Mysql'});
                     })
                     .catch(err=>console.log(err));
 
