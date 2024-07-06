@@ -30,7 +30,6 @@ app.use(session(params));
 
 
 
-
 const multer        = require('multer');
 const panStorage    = multer.diskStorage({
                                 destination: 'images',
