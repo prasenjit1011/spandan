@@ -1,17 +1,22 @@
-
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script>
+    $(document).ready(function(){
+      $("button").click(function(){
+        $("p").hide();
+      });
+    });
+    </script>
+</head>
+<body>
 <div style=" background-color: turquoise;">
     <div style="margin: auto; padding: 10px; width: 90%; height: 100%; background-color: turquoise;">
         <div style="width: 100%; margin: 20px; ">
             <div style="float: left; padding: 10px;">
-                <a href="/" style="color: #000; font-weight:bold;">Home page with MVC</a>
-            </div>
-            <div style="float: left; padding: 10px;;">
-                <a href="/shop" style="color: #000;">Shop list using mongoDB </a> &nbsp; &nbsp; 
-                <a href="/product/list" style="color: #000;">Product list using mongoose</a> &nbsp; &nbsp; 
-            </div>
-            <div style="float: left; padding: 10px;">
-                <a href="/article/list" style="color: #000" >Article using Mysql and Async</a> &nbsp; &nbsp;
-                <a href="/article/listing" style="color: #000;" >Article using Mysql</a> &nbsp; &nbsp;
+                <a href="/" style="color: #000; font-weight:bold;">Home page with MVC</a> &nbsp; &nbsp; &nbsp;
+
                 <a href="/item/list?page=2" style="color: #000;" >Article using Mysql Srquelize</a>            
             </div>
             

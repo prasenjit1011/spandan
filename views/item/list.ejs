@@ -1,0 +1,33 @@
+<%- include('../includes/header.ejs') %>
+    <div>
+        <hr />
+        <br />
+        <h3><%= pageTitle %></h3>
+        <a href="/item/add">Add Item</a>
+        <div>
+            <table width="100%" border=""1 style="border-collapse: collapse; border: 1px solid #000; background-color: #b4e2e2;">
+                <thead>
+                    <tr>
+                        <th>Sl.</th>
+                        <th>Title</th>
+                        <th>Status</th>
+                        <th>Details</th>
+                        <th>Upload Files</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% let sl = 1 %>
+                    <% for(let article of data){ %>
+                        <tr>
+                            <td><%= sl++ %></td>
+                            <td><%= article.title %></td>
+                            <td><%= article.status %></td>
+                            <td><%= article.details %></td>
+                            <td></td>
+                        </tr>
+                    <%  }   %>
+                </tbody>
+            </table>
+        </div>
+    </div>
+<%- include('../includes/footer.ejs') %>

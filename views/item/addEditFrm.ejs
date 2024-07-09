@@ -1,0 +1,39 @@
+<%- include('../includes/header.ejs') %>
+<div>
+    <hr />
+    <br />
+    <h3>Item Details</h3>
+    <a href="/item/add">Add Item</a>
+    <form>
+        <table>
+            <tr>
+                <td>Title</td>
+                <td>
+                    <input type="text" name="title" />
+                </td>
+            </tr>
+            <tr>
+                <td>Details</td>
+                <td>
+                    <textarea name="details"></textarea>
+                </td>
+            </tr>
+            <tr>
+                <td>Files</td>
+                <td>
+                    <input type="file" name="files" multiple />
+                </td>
+            </tr>
+
+            <tr>
+                <td></td>
+                <td>
+                    <input type="hidden" name="status"  value="Created" />
+                    <input type="button" name="submit"  value="Save" onclick="" />
+                    <input type="button" name="draft"   value="Save As Draft" onclick="" />
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
+<%- include('../includes/footer.ejs') %>
