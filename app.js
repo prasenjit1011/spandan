@@ -40,17 +40,9 @@ app.use(csrfProtect);
 app.use(multer({ storage: fileStorage, fileFilter: fileFilter }).single('ProductImage'));
 
 
-const shop = require('./routes/shop');
-app.use(shop);
-
-const product = require('./routes/product');
-app.use(product);
-
 const auth = require('./routes/auth');
 app.use(auth);
 
-const article = require('./routes/article');
-app.use(article);
 
 const item = require('./routes/item');
 app.use(item);
