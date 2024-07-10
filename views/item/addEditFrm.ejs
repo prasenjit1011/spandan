@@ -4,19 +4,19 @@
     <br />
     <h3>Item Details</h3>
     <a href="/item/add">Add Item</a>
-    <form method="post" action="/item">
+    <form method="post" action="/item" >
         <input type="hidden" name="_csrf" value="<%= csrfToken %>">
         <table>
             <tr>
                 <td>Title</td>
                 <td>
-                    <input type="text" name="title" value="Test" />
+                    <input type="text" name="title" id="title" />
                 </td>
             </tr>
             <tr>
                 <td>Details</td>
                 <td>
-                    <textarea name="details"></textarea>
+                    <textarea name="details" id="details"></textarea>
                 </td>
             </tr>
             <tr>
@@ -39,7 +39,8 @@
 </div>
 <script>
     $( document ).ready(function() {
-        //alert(4444);
+        $('#title').val('Test '+parseInt(100*Math.random()));
+        $('#details').val('Loren Ipsum Loren Ipsum Loren Ipsum '+parseInt(100*Math.random()));
     });
 </script>
 <%- include('../includes/footer.ejs') %>
