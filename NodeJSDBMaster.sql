@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Jul 10, 2024 at 07:04 AM
+-- Generation Time: Jul 10, 2024 at 08:03 AM
 -- Server version: 8.0.37-0ubuntu0.20.04.3
 -- PHP Version: 7.4.33
 
@@ -25,6 +25,29 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `articlefiles`
+--
+
+CREATE TABLE `articlefiles` (
+  `id` int NOT NULL,
+  `article_id` int NOT NULL,
+  `filename` varchar(255) NOT NULL,
+  `createdAt` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updatedAt` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `articlefiles`
+--
+
+INSERT INTO `articlefiles` (`id`, `article_id`, `filename`, `createdAt`) VALUES
+(6, 2, 'f1.jpg', '2024-07-10 08:01:38'),
+(7, 2, 'f3.jpg', '2024-07-10 08:03:06'),
+(8, 1, 'fnew.jpg', '2024-07-10 08:03:06');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `articles`
 --
 
@@ -32,7 +55,6 @@ CREATE TABLE `articles` (
   `id` int NOT NULL,
   `title` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
   `details` text,
-  `files` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci,
   `status` enum('Draft','Created','Approve','Rejected') CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT 'Created',
   `createdAt` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updatedAt` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
@@ -42,9 +64,10 @@ CREATE TABLE `articles` (
 -- Dumping data for table `articles`
 --
 
-INSERT INTO `articles` (`id`, `title`, `details`, `files`, `status`, `createdAt`) VALUES
-(1, 'Test Title', 'Loren Ipsum Loren Ipsum Loren Ipsum Loren Ipsum ', '', 'Draft', '2024-07-09 06:59:37'),
-(2, 'New Test Title', 'Loren Ipsum Loren Ipsum Loren Ipsum Loren Ipsum ', '', 'Created', '2024-07-09 06:59:37');
+INSERT INTO `articles` (`id`, `title`, `details`, `status`, `createdAt`) VALUES
+(1, 'Test Title', 'Loren Ipsum Loren Ipsum Loren Ipsum Loren Ipsum ', 'Draft', '2024-07-09 06:59:37'),
+(2, 'New Test Title', 'Loren Ipsum Loren Ipsum Loren Ipsum Loren Ipsum ', 'Created', '2024-07-09 06:59:37'),
+(16, 'Test 94', 'Loren Ipsum Loren Ipsum Loren Ipsum 78', 'Created', '2024-07-10 02:33:20');
 
 -- --------------------------------------------------------
 
@@ -74,6 +97,13 @@ INSERT INTO `authusers` (`id`, `type`, `fullname`, `username`, `password`, `crea
 --
 
 --
+-- Indexes for table `articlefiles`
+--
+ALTER TABLE `articlefiles`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `article` (`article_id`);
+
+--
 -- Indexes for table `articles`
 --
 ALTER TABLE `articles`
@@ -90,16 +120,32 @@ ALTER TABLE `authusers`
 --
 
 --
+-- AUTO_INCREMENT for table `articlefiles`
+--
+ALTER TABLE `articlefiles`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
 -- AUTO_INCREMENT for table `articles`
 --
 ALTER TABLE `articles`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `authusers`
 --
 ALTER TABLE `authusers`
   MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `articlefiles`
+--
+ALTER TABLE `articlefiles`
+  ADD CONSTRAINT `article` FOREIGN KEY (`article_id`) REFERENCES `articles` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

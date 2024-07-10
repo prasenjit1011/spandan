@@ -53,7 +53,7 @@ const item = require('./routes/item');
 app.use(item);
 
 app.use('/', (req, res, next)=>{
-    console.clear();
+    //console.clear();
     //console.log(req.session.user.dataValues);
     console.log(req.session.isLoggedIn);
     console.log('-: Welcome :-');

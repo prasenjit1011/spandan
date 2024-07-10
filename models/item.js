@@ -9,8 +9,7 @@ const Item = dbconnect.define('articles', {
         primaryKey: true
     },
     title: Sequelize.STRING,
-    details: Sequelize.STRING,
-    files: Sequelize.STRING,
+    details: Sequelize.STRING,    
     status: {
         type : Sequelize.ENUM,
         values:['Draft', 'Created', 'Approve', 'Rejected']
