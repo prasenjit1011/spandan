@@ -2,7 +2,7 @@
 <div style="height: 200px;">
     <hr />
     <% if(sessionData.isLoggedIn){  %>
-        <h2>Welcome <%= sessionData.user.fullname %></h2>
+        <h2>Welcome <%= sessionData.user.dataValues.fullname %></h2>
         
     <% }else{ %>
         <h2>Welcome Guest User</h2>

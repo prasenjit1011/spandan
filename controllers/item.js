@@ -29,12 +29,14 @@ exports.deleteItem = async (req, res, next) => {
 
 exports.addEditItem = async (req, res, next) => {
 
-    return res.render('./item/addEditFrm');
+    console.log("csruf: "+req.csrfToken());
+    console.log(req.body);
+    return res.render('./item/addEditFrm', {csrfToken:req.csrfToken()});
 }
 
 
 exports.updateItem = async (req, res, next) => {
-
+    console.log(req.body);
     return res.end('-- Data added to table --');
 }
 

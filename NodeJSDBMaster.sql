@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Jul 09, 2024 at 08:40 AM
+-- Generation Time: Jul 10, 2024 at 07:04 AM
 -- Server version: 8.0.37-0ubuntu0.20.04.3
 -- PHP Version: 7.4.33
 
@@ -46,6 +46,29 @@ INSERT INTO `articles` (`id`, `title`, `details`, `files`, `status`, `createdAt`
 (1, 'Test Title', 'Loren Ipsum Loren Ipsum Loren Ipsum Loren Ipsum ', '', 'Draft', '2024-07-09 06:59:37'),
 (2, 'New Test Title', 'Loren Ipsum Loren Ipsum Loren Ipsum Loren Ipsum ', '', 'Created', '2024-07-09 06:59:37');
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `authusers`
+--
+
+CREATE TABLE `authusers` (
+  `id` int NOT NULL,
+  `type` enum('admin','approver') NOT NULL DEFAULT 'admin',
+  `fullname` varchar(255) DEFAULT NULL,
+  `username` varchar(255) DEFAULT NULL,
+  `password` varchar(255) DEFAULT NULL,
+  `createdAt` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updatedAt` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `authusers`
+--
+
+INSERT INTO `authusers` (`id`, `type`, `fullname`, `username`, `password`, `createdAt`) VALUES
+(2, 'admin', 'Admin', 'admin@admin.com', '$2a$12$MObkIOMJ75jPy.zKP5oEiOtKlhRAOmA4nEM6HJMKe1SzYgHd.nUd2', '2024-07-10 01:33:03');
+
 --
 -- Indexes for dumped tables
 --
@@ -57,6 +80,12 @@ ALTER TABLE `articles`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `authusers`
+--
+ALTER TABLE `authusers`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -64,6 +93,12 @@ ALTER TABLE `articles`
 -- AUTO_INCREMENT for table `articles`
 --
 ALTER TABLE `articles`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `authusers`
+--
+ALTER TABLE `authusers`
   MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 COMMIT;
 

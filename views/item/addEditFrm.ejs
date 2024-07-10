@@ -4,12 +4,13 @@
     <br />
     <h3>Item Details</h3>
     <a href="/item/add">Add Item</a>
-    <form>
+    <form method="post" action="/item">
+        <input type="" name="_csrf" value="<%= csrfToken %>">
         <table>
             <tr>
                 <td>Title</td>
                 <td>
-                    <input type="text" name="title" />
+                    <input type="text" name="title" value="Test" />
                 </td>
             </tr>
             <tr>
@@ -29,11 +30,16 @@
                 <td></td>
                 <td>
                     <input type="hidden" name="status"  value="Created" />
-                    <input type="button" name="submit"  value="Save" onclick="" />
+                    <input type="submit" name="submit"  value="Save"  />
                     <input type="button" name="draft"   value="Save As Draft" onclick="" />
                 </td>
             </tr>
         </table>
     </form>
 </div>
+<script>
+    $( document ).ready(function() {
+        //alert(4444);
+    });
+</script>
 <%- include('../includes/footer.ejs') %>

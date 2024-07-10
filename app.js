@@ -6,7 +6,7 @@ const mongoose      = require('mongoose');
 const session       = require('express-session');
 const mongodbStore  = require('connect-mongodb-session')(session);
 
-//const cookieParser  = require('cookie-parser');
+const cookieParser  = require('cookie-parser');
 const csrf          = require('csurf')
 const csrfProtect   = csrf();//{ cookie: true }
 
@@ -35,9 +35,14 @@ app.use(express.static('images'));
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 app.use(session(params));
-app.use(csrfProtect);
+//app.use(csrfProtect);
+app.use(cookieParser())
+app.use(csrf({ cookie: true }))
 
 app.use(multer({ storage: fileStorage, fileFilter: fileFilter }).single('ProductImage'));
+
+
+
 
 
 const auth = require('./routes/auth');
@@ -48,6 +53,9 @@ const item = require('./routes/item');
 app.use(item);
 
 app.use('/', (req, res, next)=>{
+    console.clear();
+    //console.log(req.session.user.dataValues);
+    console.log(req.session.isLoggedIn);
     console.log('-: Welcome :-');
     //res.send('-: Welcome :-');
     res.render('home', {sessionData:req.session});

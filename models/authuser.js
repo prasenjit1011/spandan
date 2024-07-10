@@ -1,12 +1,17 @@
+const Sequelize = require('sequelize');
+const dbconnect = require('../util/mysql_sequelize_database');
 
-const mongoose  = require('mongoose');
-const Schema    = mongoose.Schema;
-
-const authuserSchema = new Schema({
-    fullname: { type: String, required: true },
-    username: { type: String, required: true },
-    password: { type: String, required: true },
+const Item = dbconnect.define('authusers', {
+    id: {
+        type: Sequelize.INTEGER,
+        autoIncrement: true,
+        allowNull: false,
+        primaryKey: true
+    },
+    fullname: Sequelize.STRING,
+    username: Sequelize.STRING,
+    password: Sequelize.STRING,
+    type: Sequelize.BOOLEAN,
 });
 
-module.exports = mongoose.model('authusers', authuserSchema);
-
+module.exports = Item;
