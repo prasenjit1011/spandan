@@ -11,7 +11,10 @@ const Item = dbconnect.define('articles', {
     title: Sequelize.STRING,
     details: Sequelize.STRING,
     files: Sequelize.STRING,
-    status: Sequelize.BOOLEAN,
+    status: {
+        type : Sequelize.ENUM,
+        values:['Draft', 'Created', 'Approve', 'Rejected']
+    },
 });
 
 module.exports = Item;

@@ -5,7 +5,7 @@
     <h3>Item Details</h3>
     <a href="/item/add">Add Item</a>
     <form method="post" action="/item">
-        <input type="" name="_csrf" value="<%= csrfToken %>">
+        <input type="hidden" name="_csrf" value="<%= csrfToken %>">
         <table>
             <tr>
                 <td>Title</td>

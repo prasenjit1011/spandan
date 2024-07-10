@@ -37,6 +37,19 @@ exports.addEditItem = async (req, res, next) => {
 
 exports.updateItem = async (req, res, next) => {
     console.log(req.body);
-    return res.end('-- Data added to table --');
+    const item = new Item({title: req.body.title, details: req.body.details, status: 'Created'});
+    return item.save()
+            .then(result=>{
+                console.log(result);
+                return res.redirect('/item/list');
+            })
+            .catch(err=>{
+                console.log(err);
+                return res.redirect('/');
+            });
+
+
+
+    //return res.redirect('/item/list');
 }
 
