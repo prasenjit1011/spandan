@@ -48,8 +48,11 @@ exports.deleteItem = async (req, res, next) => {
 
 exports.addEditItem = async (req, res, next) => {
 
+    console.log('---- Item ID ----');
     console.log("csruf: "+req.csrfToken());
-    console.log(req.body);
+    console.log(req.params.id);
+
+
     return res.render('./item/addEditFrm', {csrfToken:req.csrfToken(), sessionData:req.session});
 }
 

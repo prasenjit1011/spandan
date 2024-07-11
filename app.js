@@ -43,22 +43,13 @@ app.use(csrf({ cookie: true }))
 
 
 
-
-
-
 const auth = require('./routes/auth');
 app.use(auth);
-
 
 const item = require('./routes/item');
 app.use(item);
 
 app.use('/', (req, res, next)=>{
-    //console.clear();
-    //console.log(req.session);
-    //console.log(req.session.isLoggedIn);
-    console.log('-: Welcome :-');
-    //res.send('-: Welcome :-');
     res.render('home', {sessionData:req.session});
 });
 
