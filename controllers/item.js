@@ -35,8 +35,6 @@ exports.deleteItem = async (req, res, next) => {
         console.log(err);
         return res.redirect('/');
     });;
-
-    return res.end('-- Data deleted from table --');
 }
 
 
@@ -51,17 +49,25 @@ exports.addEditItem = async (req, res, next) => {
 exports.updateItem = async (req, res, next) => {
     console.log(req.body);
 
-    const item = new Item({title: req.body.title, details: req.body.details, status: req.body.status});
+    const userId    = req.session.user.dataValues.id;
+    let itemfiles   = undefined;
+    const item = new Item({userId:userId, title: req.body.title, details: req.body.details, status: req.body.status});
     return item.save()
-            .then(result=>{
+            .then(async result =>{
+                let itemId = result.dataValues.id ?? 0;
+                if(itemId){
+                    console.log('************* ', itemId, ' *********');
+                    req.files.forEach(async element => {
+                        itemfiles = new Itemfiles({itemId:itemId, filename: element.filename});
+                        await itemfiles.save();    
+                    });
+                }
+                console.log('===================');
                 return res.redirect('/item/list');
             })
             .catch(err=>{
                 return res.redirect('/');
             });
 
-
-
-    //return res.redirect('/item/list');
 }
 

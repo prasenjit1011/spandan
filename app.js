@@ -29,12 +29,12 @@ const fileFilter = (req, file, cb) => {
 
 
 const app   = express();
-app.use(multer({ storage: fileStorage, fileFilter: fileFilter }).single('ProductImage'));
+app.use(multer({ storage: fileStorage }).any());
 
 app.set('view engine', 'ejs');
 app.set('views', 'views');
 app.use(express.static('images'));
-app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
 app.use(session(params));
 //app.use(csrfProtect);

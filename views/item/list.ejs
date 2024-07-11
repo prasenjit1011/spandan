@@ -1,5 +1,5 @@
 <%- include('../includes/header.ejs') %>
-    <div>
+        <div>
         <hr />
         <br />
         <h3><%= pageTitle %></h3>
@@ -9,6 +9,7 @@
                 <thead>
                     <tr>
                         <th>Sl.</th>
+                        <th>User Id</th>
                         <th>Title</th>
                         <th>Status</th>
                         <th>Details</th>
@@ -18,17 +19,18 @@
                 </thead>
                 <tbody>
                     <% let sl = 1 %>
-                    <% for(let article of data){ %>
+                    <% for(let item of data){ %>
                         <tr>
                             <td><%= sl++ %></td>
-                            <td><%= article.title %></td>
-                            <td><%= article.status %></td>
-                            <td><%= article.details %></td>
+                            <td><%= item.userId %></td>
+                            <td><%= item.title %></td>
+                            <td><%= item.status %></td>
+                            <td><%= item.details %></td>
                             <td></td>
                             <td>
 
                                 <a href="" style="margin: 2px 10px;" >Edit</a> &nbsp; &nbsp;
-                                <a href="/item/delete/<%= article.id %>">Delete</a>
+                                <a href="/item/delete/<%= item.id %>">Delete</a>
                             </td>
                         </tr>
                     <%  }   %>
