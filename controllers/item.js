@@ -51,8 +51,9 @@ exports.addEditItem = async (req, res, next) => {
     console.log('---- Item ID ----');
     console.log("csruf: "+req.csrfToken());
     console.log(req.params.id);
+    const userId    = req.session.user.dataValues.id ?? 0;
 
-
+    
     return res.render('./item/addEditFrm', {csrfToken:req.csrfToken(), sessionData:req.session});
 }
 
