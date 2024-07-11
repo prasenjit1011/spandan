@@ -29,7 +29,9 @@
                             <td>
                                 <ol>
                                     <% item.itemfiles.forEach((file, key)=>{ %>    
-                                        <li><%=file.filename%></li>
+                                        <li>
+                                            <a href="/<%=file.filename%>" target="_blank"><%=file.filename%></a>
+                                        </li>
                                     <% }) %>
                                 </ol>
                             </td>
