@@ -26,7 +26,13 @@
                             <td><%= item.title %></td>
                             <td><%= item.status %></td>
                             <td><%= item.details %></td>
-                            <td></td>
+                            <td>
+                                <ol>
+                                    <% item.itemfiles.forEach((file, key)=>{ %>    
+                                        <li><%=file.filename%></li>
+                                    <% }) %>
+                                </ol>
+                            </td>
                             <td>
 
                                 <a href="" style="margin: 2px 10px;" >Edit</a> &nbsp; &nbsp;

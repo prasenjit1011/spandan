@@ -5,18 +5,21 @@ const Itemfiles = require('../models/itemfiles');
 
 
   exports.getItemList = (req, res, next) => {
-   
+    
     const pageNo = req.query.page ?? 0;
     const userId    = req.session.user.dataValues.id ?? 0;
+
+    console.clear();
     Item.findAll({
+            include: Itemfiles,
             where:{
-                userId: userId
+                userId:userId
             }
         })
-        .then(fetchData=>{
-            console.log(fetchData);
+        .then(async itemData=>{
+            
 
-            return res.render('./item/list', {pageNo : pageNo, data:fetchData, pageTitle:'Item list using Asyn method with Mysql Sequelize.', sessionData:req.session});
+            return res.render('./item/list', {pageNo : pageNo, data:itemData, pageTitle:'Item list using Asyn method with Mysql Sequelize.', sessionData:req.session});
         })
         .catch(err=>{
             console.log(err);
@@ -57,7 +60,7 @@ exports.updateItem = async (req, res, next) => {
     const userId    = req.session.user.dataValues.id;
     let itemfiles   = undefined;
     const item = new Item({userId:userId, title: req.body.title, details: req.body.details, status: req.body.status});
-    return item.save()
+    return await item.save()
             .then(async result =>{
                 let itemId = result.dataValues.id ?? 0;
                 if(itemId){

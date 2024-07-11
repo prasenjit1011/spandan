@@ -20,5 +20,6 @@ const Item = dbconnect.define('items', {
     },
 });
 
+Item.hasMany(Itemfiles, { foreignKey: 'itemId' });
 
 module.exports = Item;
