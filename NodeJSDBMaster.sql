@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Jul 11, 2024 at 08:36 AM
+-- Generation Time: Jul 11, 2024 at 10:33 AM
 -- Server version: 8.0.37-0ubuntu0.20.04.3
 -- PHP Version: 7.4.33
 
@@ -43,7 +43,7 @@ CREATE TABLE `authusers` (
 --
 
 INSERT INTO `authusers` (`id`, `fullname`, `username`, `password`, `type`, `createdAt`, `updatedAt`) VALUES
-(5, 'Test', 'emp@admin.com', '$2a$12$NH7WiBXgMksJ5wczjCIFFOF9E4Z28QPYeD6j97YxK29UUfGmMK4U2', NULL, '2024-07-11 02:05:04', '2024-07-11 02:05:04');
+(1, 'Test', 'emp@admin.com', '$2a$12$f58DdMwDMVR01j0Y/qnEOuM0PPDGDcZI57Dm/JiLm.Cg5XVR1G6c.', NULL, '2024-07-11 04:40:14', '2024-07-11 04:40:14');
 
 -- --------------------------------------------------------
 
@@ -53,24 +53,20 @@ INSERT INTO `authusers` (`id`, `fullname`, `username`, `password`, `type`, `crea
 
 CREATE TABLE `itemfiles` (
   `id` int NOT NULL,
+  `itemId` int DEFAULT NULL,
   `filename` varchar(255) DEFAULT NULL,
-  `createdAt` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `updatedAt` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `itemId` int DEFAULT NULL
+  `createdAt` datetime NOT NULL,
+  `updatedAt` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `itemfiles`
 --
 
-INSERT INTO `itemfiles` (`id`, `filename`, `itemId`) VALUES
-(17, '80-10.jpeg', 2),
-(18, '20-02.jpg', 2),
-(19, '27-10.jpeg', 3),
-(20, '32-06.png', 3),
-(21, '80-03.jpg', 3),
-(22, '88-10.jpeg', 4),
-(23, '70-02.jpg', 4);
+INSERT INTO `itemfiles` (`id`, `itemId`, `filename`, `createdAt`, `updatedAt`) VALUES
+(1, 1, '83-CV-Full-Stack-Developer.docx', '2024-07-11 05:01:54', '2024-07-11 05:01:54'),
+(2, 1, '50-angular.png', '2024-07-11 05:01:54', '2024-07-11 05:01:54'),
+(3, 1, '71-nestjs-1.jpeg', '2024-07-11 05:01:54', '2024-07-11 05:01:54');
 
 -- --------------------------------------------------------
 
@@ -93,10 +89,7 @@ CREATE TABLE `items` (
 --
 
 INSERT INTO `items` (`id`, `userId`, `title`, `details`, `status`, `createdAt`, `updatedAt`) VALUES
-(1, 5, 'Test 11', 'Loren Ipsum Loren Ipsum Loren Ipsum 82', 'Created', '2024-07-11 03:00:36', '2024-07-11 03:00:36'),
-(2, 5, 'Test 87', 'Loren Ipsum Loren Ipsum Loren Ipsum 7', 'Created', '2024-07-11 03:01:00', '2024-07-11 03:01:00'),
-(3, 5, 'Test 16', 'Loren Ipsum Loren Ipsum Loren Ipsum 31', 'Created', '2024-07-11 03:01:11', '2024-07-11 03:01:11'),
-(4, 5, 'Test 3', 'Loren Ipsum Loren Ipsum Loren Ipsum 57', 'Draft', '2024-07-11 03:02:39', '2024-07-11 03:02:39');
+(1, 1, 'Test 10', 'Loren Ipsum Loren Ipsum ', 'Created', '2024-07-11 05:01:54', '2024-07-11 05:01:54');
 
 --
 -- Indexes for dumped tables
@@ -112,8 +105,7 @@ ALTER TABLE `authusers`
 -- Indexes for table `itemfiles`
 --
 ALTER TABLE `itemfiles`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `itemId` (`itemId`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `items`
@@ -129,19 +121,19 @@ ALTER TABLE `items`
 -- AUTO_INCREMENT for table `authusers`
 --
 ALTER TABLE `authusers`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `itemfiles`
 --
 ALTER TABLE `itemfiles`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `items`
 --
 ALTER TABLE `items`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
