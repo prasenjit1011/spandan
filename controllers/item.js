@@ -5,10 +5,9 @@ const Itemfiles = require('../models/itemfiles');
 
 
   exports.getItemList = (req, res, next) => {
-    
+   
     const pageNo = req.query.page ?? 0;
-
-    const userId    = req.session.user.dataValues.id;
+    const userId    = req.session.user.dataValues.id ?? 0;
     Item.findAll({
             where:{
                 userId: userId
@@ -28,7 +27,7 @@ const Itemfiles = require('../models/itemfiles');
 
 exports.deleteItem = async (req, res, next) => {
 
-    const userId    = req.session.user.dataValues.id;
+    const userId    = req.session.user.dataValues.id ?? 0;
     return Item.destroy({
         where: {
             id: req.params.id,
