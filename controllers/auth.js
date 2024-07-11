@@ -4,26 +4,25 @@ const User      = require('../models/authuser');
 
 exports.getLogin = (req, res, next) => {
     console.log('-: isLoggedIn Form :-');
-    res.render('./auth/loginfrm', {csrfToken:req.csrfToken()});
+    res.render('./auth/loginfrm', {csrfToken:req.csrfToken(), sessionData:req.session});
     //res.redirect('/loginsbmt');
 }
 
 exports.getLogout = (req, res, next) => {
-    //req.session.isLoggedIn = false;
     req.session.destroy();
     console.log('-: isLoggedOut :-')
     res.redirect('/');
 }
 
 exports.getSignup = (req, res, next) => {
-    res.render('./auth/signupfrm', {csrfToken:req.csrfToken()});
+    res.render('./auth/signupfrm', {csrfToken:req.csrfToken(), sessionData:req.session});
 }
 
 exports.postLogin = (req, res, next) => {
     const username    = req.body.username;
     const password    = req.body.password;
 
-    return User.findOne({username:username})
+    return User.findOne({where: {username:username}})
         .then(data=>{
             if(!data){
                 return res.redirect('/login');
@@ -59,6 +58,9 @@ exports.postSignup = (req, res, next) => {
                 authuser.save()
                         .then(result=>{
                             console.log(result);
+
+                            req.session.isLoggedIn  = true;
+                            req.session.user        = authuser;
                             return res.redirect('/');
                         })
                         .catch(err=>{

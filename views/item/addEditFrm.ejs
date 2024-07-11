@@ -1,12 +1,17 @@
 <%- include('../includes/header.ejs') %>
+<style>
+    td{
+        padding: 5px;
+    }
+</style>
 <div>
     <hr />
     <br />
     <h3>Item Details</h3>
     <a href="/item/add">Add Item</a>
-    <form method="post" action="/item" >
+    <form method="post" action="/item" id="itemFrm" enctype="multipart/form-data">
         <input type="hidden" name="_csrf" value="<%= csrfToken %>">
-        <table>
+        <table style="width: 600px;">
             <tr>
                 <td>Title</td>
                 <td>
@@ -25,13 +30,14 @@
                     <input type="file" name="files" multiple />
                 </td>
             </tr>
-
             <tr>
                 <td></td>
                 <td>
-                    <input type="hidden" name="status"  value="Created" />
-                    <input type="submit" name="submit"  value="Save"  />
-                    <input type="button" name="draft"   value="Save As Draft" onclick="" />
+                    <input type="hidden"      name="status"   id="status"     value="Created" />
+                    <input type="button"    name="submit"   onclick="updStatus('Created')"  value="Save" style="cursor: pointer;" /> &nbsp; &nbsp;
+                    <input type="button"    name="draft"   onclick="updStatus('Draft')"  value="Save As Draft" onclick=""  style="cursor: pointer;" /> &nbsp; &nbsp;
+                    <input type="submit" id="sbmtBtn" style="display: none;" />
+                    <a href="/item/list">back</a>
                 </td>
             </tr>
         </table>
@@ -42,5 +48,10 @@
         $('#title').val('Test '+parseInt(100*Math.random()));
         $('#details').val('Loren Ipsum Loren Ipsum Loren Ipsum '+parseInt(100*Math.random()));
     });
+    updStatus = function(){
+        var arg = arguments[0];
+        $('#status').val(arg);
+        $('#sbmtBtn').click();
+    }
 </script>
 <%- include('../includes/footer.ejs') %>

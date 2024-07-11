@@ -29,6 +29,8 @@ const fileFilter = (req, file, cb) => {
 
 
 const app   = express();
+app.use(multer({ storage: fileStorage, fileFilter: fileFilter }).single('ProductImage'));
+
 app.set('view engine', 'ejs');
 app.set('views', 'views');
 app.use(express.static('images'));
@@ -39,7 +41,6 @@ app.use(session(params));
 app.use(cookieParser())
 app.use(csrf({ cookie: true }))
 
-app.use(multer({ storage: fileStorage, fileFilter: fileFilter }).single('ProductImage'));
 
 
 
@@ -54,8 +55,8 @@ app.use(item);
 
 app.use('/', (req, res, next)=>{
     //console.clear();
-    //console.log(req.session.user.dataValues);
-    console.log(req.session.isLoggedIn);
+    //console.log(req.session);
+    //console.log(req.session.isLoggedIn);
     console.log('-: Welcome :-');
     //res.send('-: Welcome :-');
     res.render('home', {sessionData:req.session});

@@ -1,5 +1,6 @@
 const Sequelize = require('sequelize');
 const dbconnect = require('../util/mysql_sequelize_database');
+const Itemfiles = require('./itemfiles');
 
 const Item = dbconnect.define('articles', {
     id: {
@@ -9,11 +10,12 @@ const Item = dbconnect.define('articles', {
         primaryKey: true
     },
     title: Sequelize.STRING,
-    details: Sequelize.STRING,    
+    details: Sequelize.STRING,
     status: {
         type : Sequelize.ENUM,
         values:['Draft', 'Created', 'Approve', 'Rejected']
     },
 });
+
 
 module.exports = Item;

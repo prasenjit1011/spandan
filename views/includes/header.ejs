@@ -17,7 +17,9 @@
             <div style="float: left; padding: 10px;">
                 <a href="/" style="color: #000; font-weight:bold;">Home page with MVC</a> &nbsp; &nbsp; &nbsp;
 
-                <a href="/item/list?page=2" style="color: #000;" >Article using Mysql Srquelize</a>            
+                <% if(sessionData.isLoggedIn){  %>
+                <a href="/item/list" style="color: #000;" >Article using Mysql Srquelize</a>            
+                <% } %>
             </div>
             
         </div>
