@@ -53,9 +53,9 @@ exports.postSignup = (req, res, next) => {
     const password    = req.body.password;
 
     return bcrypt.hash(password, 12)
-            .then(pwd=>{
+            .then(async pwd=>{
                 const authuser = new User({fullname: fullname, username: username, password: pwd});
-                authuser.save()
+                return await authuser.save()
                         .then(result=>{
                             console.log(result);
 

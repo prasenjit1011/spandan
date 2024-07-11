@@ -8,9 +8,13 @@ const Itemfiles = require('../models/itemfiles');
     
     const pageNo = req.query.page ?? 0;
 
-    Item.findAll()
+    const userId    = req.session.user.dataValues.id;
+    Item.findAll({
+            where:{
+                userId: userId
+            }
+        })
         .then(fetchData=>{
-
             console.log(fetchData);
 
             return res.render('./item/list', {pageNo : pageNo, data:fetchData, pageTitle:'Item list using Asyn method with Mysql Sequelize.', sessionData:req.session});
@@ -24,9 +28,11 @@ const Itemfiles = require('../models/itemfiles');
 
 exports.deleteItem = async (req, res, next) => {
 
+    const userId    = req.session.user.dataValues.id;
     return Item.destroy({
         where: {
-            id: req.params.id
+            id: req.params.id,
+            userId:userId
         },
     }).then(result=>{
         return res.redirect('/item/list');
