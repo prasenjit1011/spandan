@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Jul 10, 2024 at 08:03 AM
+-- Generation Time: Jul 11, 2024 at 08:36 AM
 -- Server version: 8.0.37-0ubuntu0.20.04.3
 -- PHP Version: 7.4.33
 
@@ -25,89 +25,82 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `articlefiles`
---
-
-CREATE TABLE `articlefiles` (
-  `id` int NOT NULL,
-  `article_id` int NOT NULL,
-  `filename` varchar(255) NOT NULL,
-  `createdAt` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `updatedAt` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
---
--- Dumping data for table `articlefiles`
---
-
-INSERT INTO `articlefiles` (`id`, `article_id`, `filename`, `createdAt`) VALUES
-(6, 2, 'f1.jpg', '2024-07-10 08:01:38'),
-(7, 2, 'f3.jpg', '2024-07-10 08:03:06'),
-(8, 1, 'fnew.jpg', '2024-07-10 08:03:06');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `articles`
---
-
-CREATE TABLE `articles` (
-  `id` int NOT NULL,
-  `title` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
-  `details` text,
-  `status` enum('Draft','Created','Approve','Rejected') CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT 'Created',
-  `createdAt` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `updatedAt` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
---
--- Dumping data for table `articles`
---
-
-INSERT INTO `articles` (`id`, `title`, `details`, `status`, `createdAt`) VALUES
-(1, 'Test Title', 'Loren Ipsum Loren Ipsum Loren Ipsum Loren Ipsum ', 'Draft', '2024-07-09 06:59:37'),
-(2, 'New Test Title', 'Loren Ipsum Loren Ipsum Loren Ipsum Loren Ipsum ', 'Created', '2024-07-09 06:59:37'),
-(16, 'Test 94', 'Loren Ipsum Loren Ipsum Loren Ipsum 78', 'Created', '2024-07-10 02:33:20');
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `authusers`
 --
 
 CREATE TABLE `authusers` (
   `id` int NOT NULL,
-  `type` enum('admin','approver') NOT NULL DEFAULT 'admin',
   `fullname` varchar(255) DEFAULT NULL,
   `username` varchar(255) DEFAULT NULL,
   `password` varchar(255) DEFAULT NULL,
-  `createdAt` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `updatedAt` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+  `type` tinyint(1) DEFAULT NULL,
+  `createdAt` datetime NOT NULL,
+  `updatedAt` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `authusers`
 --
 
-INSERT INTO `authusers` (`id`, `type`, `fullname`, `username`, `password`, `createdAt`) VALUES
-(2, 'admin', 'Admin', 'admin@admin.com', '$2a$12$MObkIOMJ75jPy.zKP5oEiOtKlhRAOmA4nEM6HJMKe1SzYgHd.nUd2', '2024-07-10 01:33:03');
+INSERT INTO `authusers` (`id`, `fullname`, `username`, `password`, `type`, `createdAt`, `updatedAt`) VALUES
+(5, 'Test', 'emp@admin.com', '$2a$12$NH7WiBXgMksJ5wczjCIFFOF9E4Z28QPYeD6j97YxK29UUfGmMK4U2', NULL, '2024-07-11 02:05:04', '2024-07-11 02:05:04');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `itemfiles`
+--
+
+CREATE TABLE `itemfiles` (
+  `id` int NOT NULL,
+  `filename` varchar(255) DEFAULT NULL,
+  `createdAt` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `updatedAt` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `itemId` int DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `itemfiles`
+--
+
+INSERT INTO `itemfiles` (`id`, `filename`, `itemId`) VALUES
+(17, '80-10.jpeg', 2),
+(18, '20-02.jpg', 2),
+(19, '27-10.jpeg', 3),
+(20, '32-06.png', 3),
+(21, '80-03.jpg', 3),
+(22, '88-10.jpeg', 4),
+(23, '70-02.jpg', 4);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `items`
+--
+
+CREATE TABLE `items` (
+  `id` int NOT NULL,
+  `userId` int DEFAULT NULL,
+  `title` varchar(255) DEFAULT NULL,
+  `details` varchar(255) DEFAULT NULL,
+  `status` enum('Draft','Created','Approve','Rejected') DEFAULT NULL,
+  `createdAt` datetime NOT NULL,
+  `updatedAt` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `items`
+--
+
+INSERT INTO `items` (`id`, `userId`, `title`, `details`, `status`, `createdAt`, `updatedAt`) VALUES
+(1, 5, 'Test 11', 'Loren Ipsum Loren Ipsum Loren Ipsum 82', 'Created', '2024-07-11 03:00:36', '2024-07-11 03:00:36'),
+(2, 5, 'Test 87', 'Loren Ipsum Loren Ipsum Loren Ipsum 7', 'Created', '2024-07-11 03:01:00', '2024-07-11 03:01:00'),
+(3, 5, 'Test 16', 'Loren Ipsum Loren Ipsum Loren Ipsum 31', 'Created', '2024-07-11 03:01:11', '2024-07-11 03:01:11'),
+(4, 5, 'Test 3', 'Loren Ipsum Loren Ipsum Loren Ipsum 57', 'Draft', '2024-07-11 03:02:39', '2024-07-11 03:02:39');
 
 --
 -- Indexes for dumped tables
 --
-
---
--- Indexes for table `articlefiles`
---
-ALTER TABLE `articlefiles`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `article` (`article_id`);
-
---
--- Indexes for table `articles`
---
-ALTER TABLE `articles`
-  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `authusers`
@@ -116,36 +109,39 @@ ALTER TABLE `authusers`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `itemfiles`
+--
+ALTER TABLE `itemfiles`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `itemId` (`itemId`);
+
+--
+-- Indexes for table `items`
+--
+ALTER TABLE `items`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
-
---
--- AUTO_INCREMENT for table `articlefiles`
---
-ALTER TABLE `articlefiles`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
-
---
--- AUTO_INCREMENT for table `articles`
---
-ALTER TABLE `articles`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `authusers`
 --
 ALTER TABLE `authusers`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- Constraints for dumped tables
+-- AUTO_INCREMENT for table `itemfiles`
 --
+ALTER TABLE `itemfiles`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
--- Constraints for table `articlefiles`
+-- AUTO_INCREMENT for table `items`
 --
-ALTER TABLE `articlefiles`
-  ADD CONSTRAINT `article` FOREIGN KEY (`article_id`) REFERENCES `articles` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `items`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
